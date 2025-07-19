@@ -76,7 +76,7 @@ export default function PortfolioPage() {
 
                   <img
                     src={item.images[sliderIndexes[item.id] ?? 0]}
-                    alt={item.title}
+                    alt={`Gambar ${item.title}`}
                     className="portfolio-image"
                     loading="lazy"
                     onClick={() => {
@@ -109,6 +109,7 @@ export default function PortfolioPage() {
             <div className="modal-content" onClick={(e) => e.stopPropagation()}>
               <img
                 src={modalImageList[modalCurrentIndex]}
+                alt={`Gambar Preview ${modalCurrentIndex + 1}`}
                 className="modal-image"
                 loading="lazy"
               />
@@ -122,8 +123,7 @@ export default function PortfolioPage() {
                     className="slider-btn left"
                     onClick={() =>
                       setModalCurrentIndex(
-                        (modalCurrentIndex - 1 + modalImageList.length) %
-                          modalImageList.length
+                        (modalCurrentIndex - 1 + modalImageList.length) % modalImageList.length
                       )
                     }
                   >

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { supabase } from '../../../lib/supabaseClient'
+import { supabase } from '../../../lib/supabaseClient';
 import "./style.css";
 
 const resizeImageToWebP = (file, maxWidth = 1000, maxHeight = 1000) => {
@@ -57,7 +57,10 @@ export default function CommentsPage() {
 
   useEffect(() => {
     const fetchTestimonials = async () => {
-      const { data, error } = await supabase.from("comments").select("*").order("created_at", { ascending: false });
+      const { data, error } = await supabase
+        .from("comments")
+        .select("*")
+        .order("created_at", { ascending: false });
       if (!error) setTestimonials(data);
     };
     fetchTestimonials();
@@ -67,12 +70,18 @@ export default function CommentsPage() {
     const fileName = `${Date.now()}.webp`;
     const webpBlob = await resizeImageToWebP(file, 1000, 1000);
 
-    const { error: uploadError } = await supabase.storage.from("comments-images").upload(fileName, webpBlob);
+    const { error: uploadError } = await supabase
+      .storage
+      .from("comments-images")
+      .upload(fileName, webpBlob);
     if (uploadError) {
       console.error("Upload error:", uploadError.message);
       return null;
     }
-    const { data: publicUrl } = supabase.storage.from("comments-images").getPublicUrl(fileName);
+    const { data: publicUrl } = supabase
+      .storage
+      .from("comments-images")
+      .getPublicUrl(fileName);
     return publicUrl?.publicUrl;
   };
 
@@ -121,13 +130,30 @@ export default function CommentsPage() {
 
         {showModal && (
           <div className="modal-overlay" onClick={() => setShowModal(false)}>
-            <div className="modal-content" onClick={e => e.stopPropagation()}>
+            <div className="modal-content" onClick={(e) => e.stopPropagation()}>
               <button className="close-modal-btn" onClick={() => setShowModal(false)}>×</button>
               <h3>Kirim Testimoni</h3>
               <form onSubmit={handleSubmit}>
-                <input type="text" placeholder="Nama" value={name} onChange={(e) => setName(e.target.value)} required />
-                <input type="text" placeholder="Jenis Order (fanart/design)" value={jenis_order} onChange={(e) => setJenisOrder(e.target.value)} required />
-                <textarea placeholder="Komentar" value={comment} onChange={(e) => setComment(e.target.value)} required />
+                <input
+                  type="text"
+                  placeholder="Nama"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  required
+                />
+                <input
+                  type="text"
+                  placeholder="Jenis Order (fanart/design)"
+                  value={jenis_order}
+                  onChange={(e) => setJenisOrder(e.target.value)}
+                  required
+                />
+                <textarea
+                  placeholder="Komentar"
+                  value={comment}
+                  onChange={(e) => setComment(e.target.value)}
+                  required
+                />
                 <div className="form-actions">
                   <label className="custom-file-label">
                     Pilih Gambar
@@ -139,7 +165,7 @@ export default function CommentsPage() {
                     />
                   </label>
                   <button type="submit" disabled={isSubmitting}>
-                    {isSubmitting ? 'Mengirim...' : 'Kirim'}
+                    {isSubmitting ? "Mengirim..." : "Kirim"}
                   </button>
                 </div>
                 {file && <span className="selected-file-name">{file.name}</span>}
@@ -153,12 +179,12 @@ export default function CommentsPage() {
             {testimonials.map((item, i) => (
               <div
                 key={item.id}
-                className={`testimonial-card fade-in ${i % 2 === 1 ? 'highlight' : ''}`}
+                className={`testimonial-card fade-in ${i % 2 === 1 ? "highlight" : ""}`}
               >
                 {item.image_url && (
                   <img
                     src={item.image_url}
-                    alt="design result"
+                    alt={`Hasil desain untuk ${item.name}`}
                     className="testimonial-image"
                     onClick={() => {
                       setModalImageList([item.image_url]);
@@ -167,7 +193,7 @@ export default function CommentsPage() {
                     style={{ cursor: "pointer" }}
                   />
                 )}
-                <p>"{item.comment}"</p>
+                <p>&quot;{item.comment}&quot;</p>
                 <div className="line" />
                 <h4>{item.name}</h4>
                 <span>{item.jenis_order}</span>
@@ -182,14 +208,28 @@ export default function CommentsPage() {
               <img
                 src={modalImageList[modalCurrentIndex]}
                 className="modal-image"
-                alt="preview"
-                style={{ maxHeight: '80vh', maxWidth: '90vw', borderRadius: '12px' }}
+                alt="Preview Gambar"
+                style={{
+                  maxHeight: "80vh",
+                  maxWidth: "90vw",
+                  borderRadius: "12px",
+                }}
               />
               <button
                 className="close-btn"
                 onClick={() => setModalImageList([])}
-                style={{ position: 'absolute', top: 12, right: 16, fontSize: '2rem', background: 'none', border: 'none', color: '#333' }}
-              >×</button>
+                style={{
+                  position: "absolute",
+                  top: 12,
+                  right: 16,
+                  fontSize: "2rem",
+                  background: "none",
+                  border: "none",
+                  color: "#333",
+                }}
+              >
+                ×
+              </button>
             </div>
           </div>
         )}
