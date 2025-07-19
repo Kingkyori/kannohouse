@@ -1,0 +1,525 @@
+body {
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #fff;
+  color: #000;
+}
+
+main {
+  padding-bottom: 0px;
+}
+
+/* === NAVBAR === */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 60px;
+  background-color: #fff;
+  border-bottom: 1px solid #eee;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo-img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.brand {
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+.main-nav {
+  display: flex;
+  gap: 30px;
+}
+
+.main-nav a {
+  text-decoration: none;
+  color: #000;
+  font-weight: 500;
+}
+
+.resume-btn {
+  background-color: #000;
+  color: #fff;
+  padding: 8px 18px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.icon {
+  font-size: 16px;
+}
+
+
+.main-nav a {
+  position: relative;
+  margin: 0 12px;
+  color: #000;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.main-nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0%;
+  height: 2px;
+  background-color: #8B5CF6; /* ungu elegan */
+  transition: width 0.3s ease;
+}
+
+.main-nav a:hover {
+  color: #8B5CF6;
+}
+
+.main-nav a:hover::after {
+  width: 100%;
+}
+
+/* === HERO SECTION === */
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 80px 60px 40px;  /* TOP RIGHT/LEFT BOTTOM */
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.hero-left {
+  max-width: 520px;
+  flex: 1;
+}
+
+.hero-left h1 {
+  font-size: 52px;
+  font-weight: 800;
+  line-height: 1.2;
+  margin: 16px 0 10px;
+}
+
+.hero-left .outlined {
+  -webkit-text-stroke: 1px black;
+  color: white;
+  padding: 0 4px;
+  background: none;
+  font-weight: 900;
+}
+
+.hero-left p {
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+.hero-left .desc {
+  margin-top: 24px;
+  font-size: 14px;
+  color: #666;
+}
+
+.socials {
+  display: flex;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.socials a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border: 2px solid #000;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  background-color: #fff;
+}
+
+.socials a:hover {
+  background-color: #000;
+  transform: scale(1.05);
+}
+
+.socials a img {
+  width: 24px;
+  height: 24px;
+  transition: all 0.3s ease;
+}
+
+.socials a:hover img {
+  filter: brightness(0) invert(1); /* jadikan putih */
+}
+
+.socials img {
+  width: 20px;
+  height: 20px;
+  filter: invert(0);
+}
+
+.hero-right img {
+  max-width:550px;
+}
+
+
+/* === TESTIMONIAL === */
+.testimonial-section {
+  padding: 40px 60px 80px;
+  text-align: center;
+}
+
+.testimonial-section h2 {
+  font-size: 28px;
+  margin-bottom: 40px;
+}
+
+.testimonial-grid {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.testimonial-card {
+  background: #fff;
+  color: #000;
+  padding: 24px;
+  border-radius: 14px;
+  width: 280px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.3s, color 0.3s;
+  will-change: transform, box-shadow;
+  position: relative;
+  z-index: 1;
+}
+
+.testimonial-card:hover {
+  transform: scale(1.07);
+  box-shadow: 0 18px 38px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+}
+
+/* Untuk kartu gelap (highlight) */
+.testimonial-card.highlight {
+  background-color: #000;
+  color: #fff;
+  box-shadow: 0 6px 12px rgba(255, 255, 255, 0.06);
+}
+
+.testimonial-card.highlight:hover {
+  box-shadow: 0 20px 40px rgba(255, 255, 255, 0.1);
+}
+
+/* Gambar testimonial */
+.testimonial-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 16px;
+}
+
+/* Garis pemisah */
+.line {
+  width: 40px;
+  height: 1.5px;
+  background: currentColor;
+  margin: 10px auto;
+}
+
+/* Teks isi komentar */
+.testimonial-card p {
+  font-size: 14px;
+  font-style: italic;
+  margin-bottom: 14px;
+  transition: transform 0.3s ease;
+}
+
+/* Nama */
+.testimonial-card h4 {
+  font-weight: 600;
+  margin: 0;
+}
+
+/* Jenis order */
+.testimonial-card span {
+  font-size: 12px;
+  color: inherit;
+  opacity: 0.8;
+}
+
+/* Tombol See More */
+.see-more-btn {
+  padding: 10px 24px;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+  margin-top: 40px;
+}
+
+.see-more-btn:hover {
+  background-color: #333;
+  transform: scale(1.05);
+}
+
+
+/* === CTA === */
+.cta {
+  padding: 80px 60px;
+  background-color: #fff;
+  text-align: left;
+}
+
+.cta h2 {
+  font-size: 28px;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.cta h1 {
+  font-size: 38px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.cta .highlighted {
+  background-color: transparent;
+  border: 2px solid #000;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 700;
+}
+
+.cta p {
+  max-width: 600px;
+  color: #666;
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+.order-btn {
+  background-color: black;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.order-btn:hover {
+  transform: scale(1.05);
+  background-color: #333;
+}
+
+.order-btn:active {
+  background-color: white;
+  color: black;
+  transform: scale(0.97);
+}
+
+
+
+
+/* === FOOTER === */
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 60px;
+  background-color: #000;
+  color: #fff;
+  font-size: 14px;
+}
+
+.footer-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer-left .logo-img {
+  width: 24px;
+  height: 24px;
+}
+
+.footer-right {
+  text-align: right;
+}
+
+.footer-right .credit {
+  margin-top: 4px;
+  font-size: 13px;
+  opacity: 0.8;
+}
+
+@media (hover: hover) {
+  .testimonial-card:hover {
+    transform: scale(1.08);
+    box-shadow: 0 16px 28px rgba(0, 0, 0, 0.1);
+    z-index: 2;
+  }
+}
+
+
+/* === RESPONSIVE UNTUK MOBILE DAN TABLET === */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    flex-wrap: wrap;
+  }
+
+  .main-nav {
+    flex-direction: row;
+    justify-content: flex-end;
+    flex: 1;
+    gap: 1px;
+  }
+
+  .logo-img {
+    width: 26px;
+  }
+
+  .brand {
+    display: none; /* sembunyikan KannoHouse di mobile */
+  }
+
+  .hero {
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px 20px;
+    gap: 20px;
+  }
+
+  .hero-left {
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .hero-left h1 {
+    font-size: 36px;
+  }
+
+  .hero-left p {
+    font-size: 16px;
+  }
+
+  .hero-left .desc {
+    font-size: 14px;
+  }
+
+  .hero-right img {
+    max-width: 100%;
+    height: auto;
+  }
+  .socials {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+  }
+  .socials a img {
+    width: 20px;
+    height: 20px;
+  }
+  .socials a {
+  width: 40px;       /* ubah sesuai kebutuhan */
+  height: 40px;
+  border: 2px solid #000;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s;
+}
+
+.socials a:hover {
+  background-color: #000;
+}
+
+
+  .testimonial-section {
+    padding: 40px 20px;
+  }
+
+  .testimonial-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .testimonial-card {
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .cta {
+    padding: 40px 20px;
+    text-align: center;
+  }
+
+  .cta h1 {
+    font-size: 28px;
+  }
+
+  .cta h2 {
+    font-size: 22px;
+  }
+
+  .cta p {
+    font-size: 14px;
+  }
+
+ .footer {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+
+  .footer-left {
+    justify-content: center;
+  }
+
+  .footer-left .brand {
+    display: none; /* sembunyikan teks KannoHouse di mobile */
+  }
+
+  .footer-nav {
+    justify-content: center;
+  }
+
+  .footer-right {
+    font-size: 13px;
+  }
+}
