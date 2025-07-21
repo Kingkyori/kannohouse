@@ -17,6 +17,9 @@ export const metadata = {
   icons: {
     icon: "/favicon-v2.ico", // ini yang dibaca Next.js App Router
   },
+    other: {
+    'google-site-verification': 'google5ed4d932dc4951bc.htmlx' // ← paste di sini
+  }
 };
 
 export default function RootLayout({ children }) {
