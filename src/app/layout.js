@@ -14,6 +14,9 @@ const geistMono = Geist_Mono({
 export const metadata = {
   title: "kannohouse",
   description: "Website portfolio kannohouse",
+  icons: {
+    icon: "/favicon-v2.ico", // ini yang dibaca Next.js App Router
+  },
 };
 
 export default function RootLayout({ children }) {
