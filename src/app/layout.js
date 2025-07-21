@@ -22,7 +22,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <head>
         {/* ✅ Tambahkan tag favicon manual */}
-        <link rel="icon" href="/public/favicon.ico" type="image/x-icon" />
+        <link rel="icon" href="/img/logo.png" type="image/png" />
         <title>kannohouse</title>
       </head>
       <body
