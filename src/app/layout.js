@@ -11,17 +11,20 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+// Optional: metadata Next.js (masih bisa dipakai jika ingin)
 export const metadata = {
   title: "kannohouse",
   description: "Website portfolio kannohouse",
-      icons: {
-    icon: '/favicon.ico',
-  },
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        {/* ✅ Tambahkan tag favicon manual */}
+        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+        <title>kannohouse</title>
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
