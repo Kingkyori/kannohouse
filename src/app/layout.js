@@ -15,9 +15,11 @@ const geistMono = Geist_Mono({
 export const metadata = {
   title: "kannohouse",
   icons: {
-    icon: "/favicon.ico",
+    icon: '/favicon-v2.ico',
   },
+  description: "Website portfolio kannohouse",
 };
+
 
 
 export default function RootLayout({ children }) {
@@ -25,7 +27,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <head>
         {/* ✅ Tambahkan tag favicon manual */}
-        <link rel="icon" href="/img/logo.png" type="image/png" />
+        <link rel="icon" href="/favicon-v2.ico" type="ico" />
         <title>kannohouse</title>
       </head>
       <body
