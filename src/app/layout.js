@@ -20,16 +20,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        {/* ✅ Tambahkan secara manual favicon agar tidak pakai default Vercel */}
-        <link rel="icon" href="/favicon-kanno.ico" type="image/x-icon" />
-        <meta name="theme-color" content="#ffffff" />
+        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="description" content="Website portfolio kannohouse" />
-        <meta property="og:title" content="kannohouse" />
-        <meta property="og:description" content="Website portfolio kannohouse" />
-        <meta property="og:image" content="/favicon-v2.ico" />
-        <meta property="og:url" content="https://kannohouse.site" />
-        <title>kannohouse</title>
+        <meta name="theme-color" content="#ffffff" />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         {children}
