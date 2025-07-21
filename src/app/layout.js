@@ -21,7 +21,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <head>
         {/* ✅ Tambahkan secara manual favicon agar tidak pakai default Vercel */}
-        <link rel="icon" href="/favicon-v3.ico" type="image/x-icon" />
+        <link rel="icon" href="/favicon-kanno.ico" type="image/x-icon" />
         <meta name="theme-color" content="#ffffff" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="description" content="Website portfolio kannohouse" />
