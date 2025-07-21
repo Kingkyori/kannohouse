@@ -13,10 +13,10 @@ const geistMono = Geist_Mono({
 
 export const metadata = {
   title: "kannohouse",
-    icons: {
+  description: "Website portfolio kannohouse",
+      icons: {
     icon: '/favicon.ico',
   },
-  description: "Website portfolio kannohouse",
 };
 
 export default function RootLayout({ children }) {
