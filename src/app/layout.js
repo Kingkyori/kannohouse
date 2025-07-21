@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 export const metadata = {
   title: "kannohouse",
     icons: {
-    icon: '/img/logo.png',
+    icon: '/favicon.ico',
   },
   description: "Website portfolio kannohouse",
 };
