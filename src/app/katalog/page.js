@@ -189,9 +189,9 @@ export default function KatalogPage() {
             </div>
             <div className="service-content">
               <h3>Katalog Desain</h3>
-              <p className="service-price">Portfolio Terbaru</p>
+              <p className="service-price">Berbagai Desain</p>
               <p className="service-desc">
-                Koleksi desain terbaru dengan berbagai gaya dan tema. 
+                Berbagai Layanan jasa Desain Dari Banner sampai yang lain. 
                 <span className="image-counter-small">
                   {(sliderIndexes[designCatalog.id] ?? 0) + 1} / {designCatalog.images.length}
                 </span>
@@ -264,8 +264,8 @@ export default function KatalogPage() {
               </div>
             </div>
             <div className="service-content">
-              <h3>Katalog Art</h3>
-              <p className="service-price">Art Collection</p>
+              <h3>Simpel art</h3>
+              <p className="service-price">Simpel Art Collection</p>
               <p className="service-desc">
                 Koleksi karya seni dengan berbagai teknik dan gaya artistic.
                 <span className="image-counter-small">
@@ -340,8 +340,8 @@ export default function KatalogPage() {
               </div>
             </div>
             <div className="service-content">
-              <h3>Katalog Chibi</h3>
-              <p className="service-price">Chibi Style</p>
+              <h3>Chibi Simpel</h3>
+              <p className="service-price">Chibi Simpel Style</p>
               <p className="service-desc">
                 Ilustrasi karakter dengan gaya chibi yang lucu dan menggemaskan.
                 <span className="image-counter-small">
@@ -416,10 +416,10 @@ export default function KatalogPage() {
               </div>
             </div>
             <div className="service-content">
-              <h3>Katalog Line Art</h3>
-              <p className="service-price">Line Art Collection</p>
+              <h3>Monochrome Style</h3>
+              <p className="service-price">Monochrome Style Collection</p>
               <p className="service-desc">
-                Koleksi karya line art dengan garis-garis yang bersih dan detail.
+                Koleksi karya Monochrome Style dengan garis-garis yang bersih dan detail.
                 <span className="image-counter-small">
                   {(sliderIndexes[lineArtCatalog.id] ?? 0) + 1} / {lineArtCatalog.images.length}
                 </span>
