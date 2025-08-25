@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { supabase } from '../../../lib/supabaseClient';
+import { motion } from "framer-motion";
 import "./style.css";
 
 const resizeImageToWebP = (file, maxWidth = 1000, maxHeight = 1000) => {
@@ -108,25 +109,59 @@ export default function CommentsPage() {
 
   return (
     <>
-      <header className="navbar">
-        <div className="navbar-left">
+      {/* === Navbar === */}
+      <motion.header 
+        className="navbar"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+      >
+        <motion.div 
+          className="navbar-left"
+          initial={{ opacity: 0, x: -30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+        >
           <img src="/img/logo-hitam-01.png" alt="Logo" className="logo-img" />
-        </div>
-        <nav className="main-nav">
+        </motion.div>
+        <motion.nav 
+          className="main-nav"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
           <a href="/home">About Me</a>
           <a href="/portfolio">Project</a>
-          <a href="/comments">Testimoni</a>
-        </nav>
-        <span className="brand">KannoHouse</span>
-      </header>
+          <a href="/katalog">Katalog</a>
+          <a href="/comments" className="active">Testimoni</a>
+        </motion.nav>
+        <motion.span 
+          className="brand"
+          initial={{ opacity: 0, x: 30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+        >
+          KannoHouse
+        </motion.span>
+      </motion.header>
 
-      <main className="comment-page">
-        <section className="comment-header">
+      <motion.main 
+        className="comment-page"
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      >
+        <motion.section 
+          className="comment-header"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
           <button className="open-modal-btn" onClick={() => setShowModal(true)}>
             + Tambah Testimoni
           </button>
           <h2>My <strong>Testimonial</strong></h2>
-        </section>
+        </motion.section>
 
         {showModal && (
           <div className="modal-overlay" onClick={() => setShowModal(false)}>
@@ -177,9 +212,19 @@ export default function CommentsPage() {
         <section className="testimonial-section">
           <div className="testimonial-grid">
             {testimonials.map((item, i) => (
-              <div
+              <motion.div
                 key={item.id}
                 className={`testimonial-card fade-in ${i % 2 === 1 ? "highlight" : ""}`}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                whileHover={{ scale: 1.05 }}
+                transition={{
+                  type: "spring",
+                  stiffness: 300,
+                  damping: 20,
+                  delay: 0.1 * i
+                }}
+                viewport={{ once: true }}
               >
                 {item.image_url && (
                   <img
@@ -197,7 +242,7 @@ export default function CommentsPage() {
                 <div className="line" />
                 <h4>{item.name}</h4>
                 <span>{item.jenis_order}</span>
-              </div>
+              </motion.div>
             ))}
           </div>
         </section>
@@ -233,7 +278,7 @@ export default function CommentsPage() {
             </div>
           </div>
         )}
-      </main>
+      </motion.main>
     </>
   );
 }

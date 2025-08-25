@@ -24,17 +24,40 @@ export default function HomePage() {
   return (
     <main>
       {/* === Navbar === */}
-      <header className="navbar">
-        <div className="navbar-left">
+      <motion.header 
+        className="navbar"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+      >
+        <motion.div 
+          className="navbar-left"
+          initial={{ opacity: 0, x: -30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+        >
           <img src="/img/logo-hitam-01.png" alt="Logo" className="logo-img" />
-        </div>
-        <nav className="main-nav">
-          <a href="/home">About Me</a>
+        </motion.div>
+        <motion.nav 
+          className="main-nav"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
+          <a href="/home" className="active">About Me</a>
           <a href="/portfolio">Project</a>
+          <a href="/katalog">Katalog</a>
           <a href="/comments">Testimoni</a>
-        </nav>
-        <span className="brand">KannoHouse</span>
-      </header>
+        </motion.nav>
+        <motion.span 
+          className="brand"
+          initial={{ opacity: 0, x: 30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+        >
+          KannoHouse
+        </motion.span>
+      </motion.header>
 
       {/* === Hero === */}
       <motion.section

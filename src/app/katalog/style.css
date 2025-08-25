@@ -1,0 +1,907 @@
+/* === Katalog Page Styles === */
+/* === Navbar Styles === */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 60px;
+  background-color: #fff;
+  border-bottom: 1px solid #eee;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo-img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.brand {
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: #000;
+}
+
+.main-nav {
+  display: flex;
+  gap: 30px;
+}
+
+.main-nav a {
+  text-decoration: none;
+  color: #000;
+  font-weight: 500;
+  position: relative;
+  margin: 0 12px;
+  transition: color 0.3s ease;
+}
+
+.main-nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0%;
+  height: 2px;
+  background-color: #8B5CF6;
+  transition: width 0.3s ease;
+}
+
+.main-nav a:hover {
+  color: #8B5CF6;
+}
+
+.main-nav a:hover::after {
+  width: 100%;
+}
+
+.main-nav a.active {
+  color: #8B5CF6;
+}
+
+.main-nav a.active::after {
+  width: 100%;
+}
+
+/* === Katalog Hero Section === */
+.katalog-hero {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+  padding: 120px 20px 80px;
+}
+
+.katalog-hero .hero-content {
+  max-width: 800px;
+}
+
+.katalog-hero h1 {
+  font-size: 4rem;
+  font-weight: 800;
+  margin-bottom: 30px;
+  color: #2c3e50;
+  line-height: 1.2;
+}
+
+.katalog-hero .outlined {
+  -webkit-text-stroke: 2px #3498db;
+  color: transparent;
+  font-weight: 800;
+}
+
+.katalog-hero .desc {
+  font-size: 1.2rem;
+  color: #7f8c8d;
+  line-height: 1.8;
+  margin-bottom: 0;
+}
+
+/* === Services Section === */
+.services-section {
+  padding: 100px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  background: white;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 3rem;
+  font-weight: 300;
+  margin-bottom: 60px;
+  color: #2c3e50;
+}
+
+.section-title strong {
+  font-weight: 700;
+  color: #3498db;
+}
+
+.services-section h2 {
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 40px;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 40px;
+}
+
+.service-card {
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  border: 1px solid #f1f2f3;
+}
+
+.service-card:hover {
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+  transform: translateY(-10px);
+}
+
+.service-image {
+  position: relative;
+  height: 280px;
+  overflow: hidden;
+  background: #f8f9fa;
+}
+
+.service-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.service-card:hover .service-image img {
+  transform: scale(1.1);
+}
+
+.service-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(52, 152, 219, 0.9), rgba(41, 128, 185, 0.95));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.service-card:hover .service-overlay {
+  opacity: 1;
+}
+
+.order-btn-small {
+  background: white;
+  color: #3498db;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.order-btn-small:hover {
+  background: #f8f9fa;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(255, 255, 255, 0.3);
+}
+
+.service-content {
+  padding: 35px 30px;
+}
+
+.service-content h3 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 12px;
+  line-height: 1.3;
+}
+
+.service-price {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #3498db;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.service-desc {
+  color: #7f8c8d;
+  line-height: 1.7;
+  font-size: 1rem;
+  margin: 0;
+}
+
+/* === CTA Section === */
+.katalog-cta {
+  background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+  padding: 80px 20px;
+  text-align: center;
+  color: white;
+}
+
+.katalog-cta h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.katalog-cta .highlighted {
+  color: #f1c40f;
+}
+
+.katalog-cta p {
+  font-size: 1.1rem;
+  margin-bottom: 40px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  opacity: 0.9;
+}
+
+.contact-btn {
+  background: white;
+  color: #3498db;
+  border: none;
+  padding: 15px 40px;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.contact-btn:hover {
+  background: #f8f9fa;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(255, 255, 255, 0.2);
+}
+
+/* Navigation Active State */
+.main-nav a.active {
+  color: #3498db;
+  font-weight: 600;
+  position: relative;
+}
+
+.main-nav a.active::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #3498db;
+}
+
+/* === Responsive Design === */
+@media (max-width: 1024px) {
+  .services-grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .katalog-hero {
+    padding: 100px 20px 60px;
+    min-height: 70vh;
+  }
+  
+  .katalog-hero h1 {
+    font-size: 3rem;
+  }
+  
+  .services-section {
+    padding: 80px 20px;
+  }
+  
+  .section-title {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+  }
+  
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+  
+  .service-image {
+    height: 250px;
+  }
+  
+  .service-content {
+    padding: 25px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .katalog-hero {
+    padding: 80px 15px 50px;
+    min-height: 60vh;
+  }
+  
+  .katalog-hero h1 {
+    font-size: 2.5rem;
+  }
+  
+  .katalog-hero .desc {
+    font-size: 1.1rem;
+  }
+  
+  .services-section {
+    padding: 60px 15px;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+  }
+  
+  .service-card {
+    margin: 0 5px;
+  }
+  
+  .service-content h3 {
+    font-size: 1.4rem;
+  }
+  
+  .service-price {
+    font-size: 1.1rem;
+  }
+}
+
+/* Ensure proper background for the whole page */
+body {
+  background: white;
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  background: white;
+  min-height: 100vh;
+}
+
+/* === CATALOG SECTION === */
+.catalog-section {
+  padding: 60px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.catalog-section h2 {
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 40px;
+}
+
+.catalog-card {
+  background: #fff;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.catalog-card-featured {
+  background: #fff;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  margin-bottom: 40px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.catalog-slider {
+  position: relative;
+  height: 400px;
+  overflow: hidden;
+}
+
+.catalog-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.catalog-image:hover {
+  transform: scale(1.05);
+}
+
+.slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  border: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  font-size: 24px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 2;
+}
+
+.slider-btn:hover {
+  background: rgba(0, 0, 0, 0.9);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.slider-btn.left {
+  left: 20px;
+}
+
+.slider-btn.right {
+  right: 20px;
+}
+
+.slider-dots {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 2;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.7);
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.dot.active {
+  background: white;
+  border-color: white;
+}
+
+.dot:hover {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.catalog-content {
+  padding: 30px;
+}
+
+.catalog-content h3 {
+  font-size: 24px;
+  margin-bottom: 15px;
+  color: #2c3e50;
+}
+
+.catalog-content p {
+  color: #7f8c8d;
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+
+.image-counter {
+  font-weight: 600;
+  color: #3498db !important;
+  font-size: 14px;
+}
+
+/* === SMALL SLIDER FOR SERVICE CARDS === */
+.catalog-slider-small {
+  position: relative;
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+}
+
+.slider-btn-small {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  border: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 3;
+}
+
+.slider-btn-small:hover {
+  background: rgba(0, 0, 0, 0.9);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.slider-btn-small.left {
+  left: 10px;
+}
+
+.slider-btn-small.right {
+  right: 10px;
+}
+
+.slider-dots-small {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 6px;
+  z-index: 3;
+}
+
+.dot-small {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.dot-small.active {
+  background: white;
+  border-color: white;
+}
+
+.dot-small:hover {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.image-counter-small {
+  display: block;
+  margin-top: 5px;
+  font-size: 12px;
+  color: #3498db;
+  font-weight: 600;
+}
+
+/* === MODAL STYLES === */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 60px 20px 60px 20px;
+  overflow: auto;
+}
+
+.modal-content {
+  position: relative;
+  width: auto;
+  height: auto;
+  max-width: none;
+  max-height: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-image {
+  width: auto;
+  height: auto;
+  max-width: calc(100vw - 40px);
+  max-height: calc(100vh - 120px);
+  object-fit: contain;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+}
+
+.close-btn {
+  position: absolute;
+  top: -50px;
+  right: -10px;
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 24px;
+  cursor: pointer;
+  color: #333;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.close-btn:hover {
+  background: white;
+  transform: scale(1.1);
+}
+
+.slider-btn.modal-btn {
+  background: rgba(255, 255, 255, 0.9);
+  color: #333;
+  width: 45px;
+  height: 45px;
+  font-size: 20px;
+}
+
+.slider-btn.modal-btn:hover {
+  background: white;
+}
+
+.slider-btn.modal-btn.left {
+  left: -60px;
+}
+
+.slider-btn.modal-btn.right {
+  right: -60px;
+}
+
+.modal-counter {
+  position: absolute;
+  bottom: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 8px 16px;
+  border-radius: 20px;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+  /* Navbar responsive */
+  .navbar {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    flex-wrap: nowrap;
+    position: relative;
+  }
+
+  .navbar-left {
+    flex-shrink: 0;
+  }
+
+  .main-nav {
+    display: flex;
+    justify-content: center;
+    flex: 1;
+    gap: 12px;
+    padding: 0 10px;
+  }
+
+  .main-nav a {
+    font-size: 13px;
+    font-weight: 500;
+    white-space: nowrap;
+    padding: 4px 6px;
+    margin: 0;
+  }
+
+  .main-nav a::after {
+    bottom: -2px;
+    height: 1.5px;
+  }
+
+  .brand {
+    display: none; /* sembunyikan KannoHouse di mobile */
+  }
+
+  /* Katalog content responsive */
+  .catalog-slider {
+    height: 300px;
+  }
+  
+  .catalog-content {
+    padding: 20px;
+  }
+  
+  .catalog-content h3 {
+    font-size: 20px;
+  }
+  
+  .slider-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+  }
+  
+  .slider-btn.left {
+    left: 10px;
+  }
+  
+  .slider-btn.right {
+    right: 10px;
+  }
+  
+  .dot {
+    width: 10px;
+    height: 10px;
+  }
+
+  /* Modal responsive untuk mobile */
+  .modal-overlay {
+    padding: 50px 10px 50px 10px;
+  }
+
+  .modal-content {
+    width: auto;
+    height: auto;
+  }
+
+  .modal-image {
+    max-width: calc(100vw - 20px);
+    max-height: calc(100vh - 100px);
+  }
+
+  .close-btn {
+    top: -45px;
+    right: 0px;
+    width: 35px;
+    height: 35px;
+    font-size: 20px;
+  }
+
+  .slider-btn.modal-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+
+  .slider-btn.modal-btn.left {
+    left: -50px;
+  }
+
+  .slider-btn.modal-btn.right {
+    right: -50px;
+  }
+
+  .modal-counter {
+    bottom: -35px;
+    font-size: 14px;
+    padding: 6px 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Navbar untuk device sangat kecil */
+  .navbar {
+    padding: 12px 15px;
+  }
+
+  .main-nav {
+    gap: 8px;
+  }
+
+  .main-nav a {
+    font-size: 12px;
+    padding: 3px 4px;
+  }
+
+  .brand {
+    display: none; /* sembunyikan KannoHouse di mobile */
+  }
+
+  .logo-img {
+    width: 22px;
+    height: 22px;
+  }
+
+  /* Modal untuk device sangat kecil */
+  .modal-overlay {
+    padding: 40px 5px 40px 5px;
+  }
+
+  .modal-content {
+    width: auto;
+    height: auto;
+  }
+
+  .modal-image {
+    max-width: calc(100vw - 10px);
+    max-height: calc(100vh - 80px);
+  }
+
+  .close-btn {
+    top: -40px;
+    right: 5px;
+    width: 32px;
+    height: 32px;
+    font-size: 18px;
+  }
+
+  .slider-btn.modal-btn {
+    width: 35px;
+    height: 35px;
+    font-size: 16px;
+  }
+
+  .slider-btn.modal-btn.left {
+    left: -40px;
+  }
+
+  .slider-btn.modal-btn.right {
+    right: -40px;
+  }
+
+  .modal-counter {
+    bottom: -30px;
+    font-size: 12px;
+    padding: 4px 10px;
+  }
+
+  /* Sembunyikan slider buttons di mobile sangat kecil jika terlalu sempit */
+  @media (max-width: 360px) {
+    .slider-btn.modal-btn {
+      display: none;
+    }
+    
+    .modal-overlay {
+      padding: 30px 2px 30px 2px;
+    }
+    
+    .modal-image {
+      max-width: calc(100vw - 4px);
+      max-height: calc(100vh - 60px);
+    }
+  }
+}
+
+@media (min-width: 1200px) {
+  /* Modal untuk desktop besar */
+  .modal-overlay {
+    padding: 80px 40px 80px 40px;
+  }
+
+  .modal-image {
+    max-width: calc(100vw - 80px);
+    max-height: calc(100vh - 160px);
+  }
+
+  .slider-btn.modal-btn.left {
+    left: -70px;
+  }
+
+  .slider-btn.modal-btn.right {
+    right: -70px;
+  }
+}

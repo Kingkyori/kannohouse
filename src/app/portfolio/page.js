@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { supabase } from '../../../lib/supabaseClient'
+import { motion } from "framer-motion"
 import './style.css'
 
 export default function PortfolioPage() {
@@ -44,25 +45,73 @@ export default function PortfolioPage() {
 
   return (
     <div>
-      {/* Navbar */}
-      <header className="navbar">
-        <div className="navbar-left">
+      {/* === Navbar === */}
+      <motion.header 
+        className="navbar"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+      >
+        <motion.div 
+          className="navbar-left"
+          initial={{ opacity: 0, x: -30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+        >
           <img src="/img/logo-hitam-01.png" alt="Logo" className="logo-img" />
-        </div>
-        <nav className="main-nav">
+        </motion.div>
+        <motion.nav 
+          className="main-nav"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
           <a href="/home">About Me</a>
-          <a href="/portfolio">Project</a>
+          <a href="/portfolio" className="active">Project</a>
+          <a href="/katalog">Katalog</a>
           <a href="/comments">Testimoni</a>
-        </nav>
-        <span className="brand">KannoHouse</span>
-      </header>
+        </motion.nav>
+        <motion.span 
+          className="brand"
+          initial={{ opacity: 0, x: 30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+        >
+          KannoHouse
+        </motion.span>
+      </motion.header>
 
       {/* Main Portfolio */}
-      <main className="portfolio-main">
-        <h2 className="portfolio-title">Portofolio</h2>
+      <motion.main 
+        className="portfolio-main"
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      >
+        <motion.h2 
+          className="portfolio-title"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
+          Portofolio
+        </motion.h2>
         <div className="portfolio-grid">
-          {items.map((item) => (
-            <div className="portfolio-card" key={item.id}>
+          {items.map((item, index) => (
+            <motion.div
+              className="portfolio-card"
+              key={item.id}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              whileHover={{ scale: 1.05 }}
+              transition={{
+                type: "spring",
+                stiffness: 300,
+                damping: 20,
+                delay: 0.1 * index
+              }}
+              viewport={{ once: true }}
+            >
               {item.images?.length > 0 && (
                 <div className="portfolio-slider">
                   {item.images.length > 1 && (
@@ -99,7 +148,7 @@ export default function PortfolioPage() {
               <h3 className="portfolio-card-title">{item.title}</h3>
               <p className="portfolio-card-category">{item.category}</p>
               <p className="portfolio-card-desc">{item.description}</p>
-            </div>
+            </motion.div>
           ))}
         </div>
 
@@ -144,7 +193,7 @@ export default function PortfolioPage() {
             </div>
           </div>
         )}
-      </main>
+      </motion.main>
     </div>
   )
 }

@@ -88,6 +88,14 @@ main {
   width: 100%;
 }
 
+.main-nav a.active {
+  color: #8B5CF6;
+}
+
+.main-nav a.active::after {
+  width: 100%;
+}
+
 body {
   background: #fff; /* pastikan ini putih */
 }
@@ -319,19 +327,39 @@ input[type="file"] {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 12px 16px;
-    flex-wrap: wrap;
+    padding: 15px 20px;
+    flex-wrap: nowrap;
+    position: relative;
+  }
+
+  .navbar-left {
+    flex-shrink: 0;
   }
 
   .main-nav {
-    flex-direction: row;
-    justify-content: flex-end;
+    display: flex;
+    justify-content: center;
     flex: 1;
-    gap: 1px;
+    gap: 12px;
+    padding: 0 10px;
+  }
+
+  .main-nav a {
+    font-size: 13px;
+    font-weight: 500;
+    white-space: nowrap;
+    padding: 4px 6px;
+    margin: 0;
+  }
+
+  .main-nav a::after {
+    bottom: -2px;
+    height: 1.5px;
   }
 
   .logo-img {
-    width: 26px;
+    width: 24px;
+    height: 24px;
   }
 
   .brand {
@@ -393,7 +421,31 @@ input[type="file"] {
   }
 }
 
-@media (max-width: 420px) {
+@media (max-width: 480px) {
+  /* Navbar untuk device sangat kecil */
+  .navbar {
+    padding: 12px 15px;
+  }
+
+  .main-nav {
+    gap: 8px;
+  }
+
+  .main-nav a {
+    font-size: 12px;
+    padding: 3px 4px;
+  }
+
+  .brand {
+    display: none; /* tetap sembunyikan KannoHouse di mobile */
+  }
+
+  .logo-img {
+    width: 22px;
+    height: 22px;
+  }
+
+  /* Testimonial grid untuk layar kecil */
   .testimonial-grid {
     grid-template-columns: repeat(2, 1fr); /* tetap 2 kolom sampai minimal layar */
     gap: 10px;
@@ -418,5 +470,22 @@ input[type="file"] {
     width: 100%;
     height: auto;
     border-radius: 12px;
+  }
+}
+
+@media (max-width: 420px) {
+  /* Untuk layar sangat kecil, tetap 2 kolom dengan spacing minimal */
+  .testimonial-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    padding: 0 8px;
+  }
+
+  .testimonial-card {
+    padding: 0.5rem;
+  }
+
+  .testimonial-image {
+    height: 80px;
   }
 }
