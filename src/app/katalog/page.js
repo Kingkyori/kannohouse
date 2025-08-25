@@ -26,7 +26,7 @@ export default function KatalogPage() {
   // Data katalog art
   const artCatalog = {
     id: 'art',
-    title: 'Katalog Art',
+    title: 'Simpel Art',
     images: [
       '/img/katalog/art/1@2x.png',
       '/img/katalog/art/4@2x.png'
@@ -36,7 +36,7 @@ export default function KatalogPage() {
   // Data katalog chibi
   const chibiCatalog = {
     id: 'chibi',
-    title: 'Katalog Chibi',
+    title: 'Simpel Chibi',
     images: [
       '/img/katalog/chibi/2@2x.png',
       '/img/katalog/chibi/4@2x.png'
@@ -46,7 +46,7 @@ export default function KatalogPage() {
   // Data katalog line art
   const lineArtCatalog = {
     id: 'lineart',
-    title: 'Katalog Line Art',
+    title: 'monocrome style',
     images: [
       '/img/katalog/lineart/5.png',
       '/img/katalog/lineart/6.png'
