@@ -77,75 +77,109 @@ body {
 
 /* === Main Container === */
 
-.portfolio-title {
-  text-align: center;
-  font-size: 1.4rem;
-  font-weight: 700;
-  margin-bottom: 24px;
-  color: #222;
-}
-
 .portfolio-main {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 36px 16px 48px 16px;
+  padding: 48px 24px 64px 24px;
+}
+
+.portfolio-title {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin: 0 0 48px 0;
+  color: #1a1a1a;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, #333 0%, #666 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 
 /* === Grid Portfolio === */
 .portfolio-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 18px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  padding: 0;
 }
 @media (max-width: 1200px) {
-  .portfolio-grid { grid-template-columns: repeat(3, 1fr); }
+  .portfolio-grid { 
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+  }
 }
 @media (max-width: 900px) {
-  .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
+  .portfolio-grid { 
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 18px;
+  }
 }
 @media (max-width: 600px) {
-  .portfolio-grid { grid-template-columns: 1fr; }
+  .portfolio-grid { 
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
 }
 
 /* === Card Portfolio === */
 .portfolio-card {
   background: #fff;
-  border-radius: 14px;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.07), 0 1.5px 4px rgba(0,0,0,0.04);
-  padding: 20px 18px 22px 18px;
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.04);
+  padding: 0;
   display: flex;
   flex-direction: column;
   text-align: center;
   align-items: center;
-  transition: box-shadow 0.2s, transform 0.2s;
-  border: 1px solid #ececec;
-  min-height: 370px;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  min-height: 420px;
+  overflow: hidden;
+  backdrop-filter: blur(20px);
+  position: relative;
 }
+
+.portfolio-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+  border-radius: 20px;
+  pointer-events: none;
+  z-index: 1;
+}
+
 .portfolio-card:hover {
-  box-shadow: 0 8px 32px rgba(0,0,0,0.13);
-  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.15), 0 8px 24px rgba(0,0,0,0.08);
+  transform: translateY(-8px) scale(1.02);
 }
 
 /* === Gambar Slider === */
 .portfolio-slider {
   position: relative;
   width: 100%;
-  height: 200px;
+  height: 240px;
   overflow: hidden;
+  border-radius: 20px 20px 0 0;
 }
+
 .portfolio-image {
   width: 100%;
-  height: 200px;
+  height: 240px;
   object-fit: cover;
-  border-radius: 8px;
-  background: #f3f3f3;
-  border: 1px solid #eee;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
   cursor: pointer;
-  transition: transform 0.2s ease;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  border: none;
 }
+
 .portfolio-image:hover {
-  transform: scale(1.02);
+  transform: scale(1.05);
 }
 
 /* === Tombol Slide === */
@@ -153,47 +187,62 @@ body {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.4);
-  color: #fff;
-  font-size: 1.2rem;
-  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.9);
+  color: #333;
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 12px 14px;
   border-radius: 50%;
   border: none;
   cursor: pointer;
-  z-index: 10;
-  transition: background 0.3s ease;
+  z-index: 20;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 .slider-btn:hover {
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(255, 255, 255, 1);
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
 }
-.slider-btn.left { left: 10px; }
-.slider-btn.right { right: 10px; }
+.slider-btn.left { left: 12px; }
+.slider-btn.right { right: 12px; }
 
 /* === Teks Card === */
 .portfolio-card-title {
-  font-size: 1.1rem;
+  font-size: 1.25rem;
   font-weight: 700;
-  margin-bottom: 4px;
-  color: #111;
+  margin: 20px 20px 8px 20px;
+  color: #1a1a1a;
   text-align: center;
-  width: 100%;
-  margin: 12px 0 4px;
+  width: calc(100% - 40px);
+  line-height: 1.3;
+  letter-spacing: -0.01em;
 }
+
 .portfolio-card-category {
-  font-size: 0.95rem;
-  color: #555;
-  margin-bottom: 2px;
-  font-weight: 500;
+  font-size: 0.85rem;
+  color: #8B5CF6;
+  margin: 0 20px 6px 20px;
+  font-weight: 600;
   text-align: center;
-  width: 100%;
+  width: calc(100% - 40px);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  background: rgba(139, 92, 246, 0.1);
+  padding: 4px 12px;
+  border-radius: 12px;
+  display: inline-block;
 }
+
 .portfolio-card-desc {
   font-size: 0.9rem;
-  color: #888;
-  margin-top: 4px;
-  line-height: 1.5;
+  color: #666;
+  margin: 8px 20px 20px 20px;
+  line-height: 1.6;
   text-align: center;
-  width: 95%;
+  width: calc(100% - 40px);
+  opacity: 0.9;
 }
 .portfolio-image,
 .modal-image {
@@ -293,6 +342,278 @@ body {
   opacity: 0.6;
 }
 
+/* === Add Portfolio Form Modal === */
+.add-form-modal {
+  position: relative;
+  background: #fff;
+  padding: 30px;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.add-form-modal h3 {
+  text-align: center;
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 25px;
+  color: #222;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #333;
+  font-size: 0.95rem;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 2px solid #e5e5e5;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #333;
+  background: #fff;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  box-sizing: border-box;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #8B5CF6;
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+}
+
+.form-group input[type="file"] {
+  padding: 10px;
+  border: 2px dashed #ccc;
+  background: #f9f9f9;
+  cursor: pointer;
+}
+
+.form-group input[type="file"]:hover {
+  border-color: #8B5CF6;
+  background: #f8f4ff;
+}
+
+.file-preview {
+  margin-top: 10px;
+  padding: 10px;
+  background: #f0f9ff;
+  border-radius: 6px;
+  border: 1px solid #e0f2fe;
+}
+
+.file-preview p {
+  margin: 0 0 8px 0;
+  font-weight: 600;
+  color: #0369a1;
+  font-size: 0.9rem;
+}
+
+.file-name {
+  display: inline-block;
+  background: #8B5CF6;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  margin: 2px 4px 2px 0;
+}
+
+.form-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  margin-top: 25px;
+}
+
+.cancel-btn,
+.submit-btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.cancel-btn {
+  background: #f3f4f6;
+  color: #666;
+  border: 1px solid #d1d5db;
+}
+
+.cancel-btn:hover {
+  background: #e5e7eb;
+  color: #374151;
+}
+
+.submit-btn {
+  background: linear-gradient(135deg, #8B5CF6 0%, #7C3AED 100%);
+  color: white;
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+}
+
+.submit-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #7C3AED 0%, #6D28D9 100%);
+  box-shadow: 0 6px 16px rgba(139, 92, 246, 0.4);
+  transform: translateY(-1px);
+}
+
+.submit-btn:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+.add-form-modal .close-btn {
+  top: 15px;
+  right: 20px;
+  color: #666;
+  font-size: 1.5rem;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.add-form-modal .close-btn:hover {
+  background: #f3f4f6;
+  color: #333;
+}
+
+/* === WebP Preview Styles === */
+.loading-preview {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px;
+  background: #f0f9ff;
+  border-radius: 8px;
+  margin-top: 10px;
+  border: 1px solid #e0f2fe;
+}
+
+.loading-spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #e5e7eb;
+  border-top: 2px solid #8B5CF6;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.webp-preview {
+  margin-top: 15px;
+  padding: 15px;
+  background: #f8fafc;
+  border-radius: 10px;
+  border: 2px solid #e2e8f0;
+}
+
+.preview-header h4 {
+  margin: 0 0 10px 0;
+  color: #1e293b;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.compression-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.size-info {
+  background: #fee2e2;
+  color: #dc2626;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.size-info.compressed {
+  background: #dcfce7;
+  color: #16a34a;
+}
+
+.saved-info {
+  background: #ddd6fe;
+  color: #7c3aed;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.preview-images {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 12px;
+}
+
+.preview-item {
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e7eb;
+}
+
+.preview-img {
+  width: 100%;
+  height: 80px;
+  object-fit: cover;
+  display: block;
+}
+
+.preview-info {
+  padding: 8px;
+  text-align: center;
+}
+
+.preview-name {
+  display: block;
+  font-size: 0.75rem;
+  color: #374151;
+  font-weight: 500;
+  margin-bottom: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.preview-size {
+  display: block;
+  font-size: 0.7rem;
+  color: #16a34a;
+  font-weight: 600;
+}
+
 @keyframes fadeIn {
   from { opacity: 0; transform: scale(0.98); }
   to { opacity: 1; transform: scale(1); }
@@ -347,73 +668,60 @@ body {
   }
 
   .portfolio-title {
-    font-size: 1.4rem;
+    font-size: 2rem;
     text-align: center;
-    margin: 20px 0 12px;
+    margin: 32px 0 40px 0;
+    padding: 0 20px;
+  }
+
+  .portfolio-main {
+    padding: 24px 16px 48px 16px;
   }
 
   .portfolio-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
-    padding: 0 16px 32px;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 0;
   }
 
   .portfolio-card {
-    background: white;
-    border-radius: 14px;
-    padding: 10px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    min-height: 330px;
-    height: 100%;
+    border-radius: 16px;
+    min-height: 380px;
+    margin: 0 8px;
   }
 
   .portfolio-slider {
-    width: 100%;
-    height: auto;
-    aspect-ratio: 1 / 1;
-    overflow: hidden;
-    border-radius: 12px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    height: 220px;
+    border-radius: 16px 16px 0 0;
   }
 
   .portfolio-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 12px;
+    height: 220px;
+    border-radius: 16px 16px 0 0;
   }
 
   .portfolio-card-title {
-  font-size: 0.95rem;
-  font-weight: 700;
-  margin-top: 10px;
-  margin-bottom: 4px;
+    font-size: 1.1rem;
+    margin: 16px 16px 8px 16px;
+    width: calc(100% - 32px);
   }
 
   .portfolio-card-category {
     font-size: 0.8rem;
-    font-weight: 600;
-    color: #666;
-    margin-bottom: 4px;
+    margin: 0 16px 8px 16px;
+    width: auto;
+    display: inline-block;
   }
 
   .portfolio-card-desc {
-    font-size: 0.75rem;
-    color: #888;
-    margin: 0; /* hilangkan jarak aneh */
-    line-height: 1.2;
+    font-size: 0.85rem;
+    margin: 8px 16px 16px 16px;
+    width: calc(100% - 32px);
+    line-height: 1.5;
   }
 
-
   .slider-btn {
-    padding: 4px 8px;
+    padding: 8px 10px;
     font-size: 0.9rem;
   }
   
