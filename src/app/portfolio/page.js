@@ -23,11 +23,15 @@ export default function PortfolioPage() {
   const [compressionInfo, setCompressionInfo] = useState(null)
 
   useEffect(() => {
-    fetchPortfolio()
-    
-    // Debug Supabase configuration
+    // Debug environment variables
+    console.log('=== ENVIRONMENT DEBUG ===')
+    console.log('NODE_ENV:', process.env.NODE_ENV)
     console.log('Supabase URL:', process.env.NEXT_PUBLIC_SUPABASE_URL)
+    console.log('Supabase Key exists:', !!process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY)
     console.log('Supabase client:', supabase)
+    console.log('========================')
+    
+    fetchPortfolio()
     
     // Test public URL generation
     testPublicUrl()
@@ -55,40 +59,58 @@ export default function PortfolioPage() {
   }
 
   const fetchPortfolio = async () => {
-    const { data } = await supabase
-      .from('portfolio')
-      .select('*')
-      .order('created_at', { ascending: false })
-    
-    if (data) {
-      // Process data to handle images as string or array
-      const processedData = data.map(item => {
-        let images = []
-        
-        try {
-          // If images is a string, parse it as JSON
-          if (typeof item.images === 'string') {
-            images = JSON.parse(item.images)
-          } else if (Array.isArray(item.images)) {
-            images = item.images
-          } else {
-            // Fallback to image_url if images is null/undefined
+    try {
+      console.log('Fetching portfolio data...')
+      
+      const { data, error } = await supabase
+        .from('portfolio')
+        .select('*')
+        .order('created_at', { ascending: false })
+      
+      console.log('Supabase response:', { data, error })
+      
+      if (error) {
+        console.error('Supabase error:', error)
+        throw error
+      }
+      
+      if (data) {
+        // Process data to handle images as string or array
+        const processedData = data.map(item => {
+          let images = []
+          
+          try {
+            // If images is a string, parse it as JSON
+            if (typeof item.images === 'string') {
+              images = JSON.parse(item.images)
+            } else if (Array.isArray(item.images)) {
+              images = item.images
+            } else {
+              // Fallback to image_url if images is null/undefined
+              images = item.image_url ? [item.image_url] : []
+            }
+          } catch (error) {
+            console.error('Error parsing images for item:', item.id, error)
+            // Fallback to image_url if parsing fails
             images = item.image_url ? [item.image_url] : []
           }
-        } catch (error) {
-          console.error('Error parsing images for item:', item.id, error)
-          // Fallback to image_url if parsing fails
-          images = item.image_url ? [item.image_url] : []
-        }
+          
+          return {
+            ...item,
+            images: images
+          }
+        })
         
-        return {
-          ...item,
-          images: images
-        }
-      })
-      
-      console.log('Processed portfolio data:', processedData)
-      setItems(processedData)
+        console.log('Processed portfolio data:', processedData)
+        console.log('Total items:', processedData.length)
+        setItems(processedData)
+      } else {
+        console.log('No data returned from Supabase')
+        setItems([])
+      }
+    } catch (error) {
+      console.error('Error fetching portfolio:', error)
+      setItems([])
     }
   }
 
