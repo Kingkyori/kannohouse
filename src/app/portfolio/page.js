@@ -87,12 +87,19 @@ export default function PortfolioPage() {
     try {
       console.log('Fetching portfolio data...')
       
+      // Test 1: Count total rows
+      const { count, error: countError } = await supabase
+        .from('portfolio')
+        .select('*', { count: 'exact', head: true })
+      
+      console.log('Total rows in portfolio table:', count, 'Error:', countError)
+      
+      // Test 2: Get data without any filters
       const { data, error } = await supabase
         .from('portfolio')
         .select('*')
-        .order('created_at', { ascending: false })
       
-      console.log('Supabase response:', { data, error })
+      console.log('Raw Supabase response (NO ORDER BY):', { data, error })
       
       if (error) {
         console.error('Supabase error details:', {
@@ -105,6 +112,9 @@ export default function PortfolioPage() {
       }
       
       if (data) {
+        console.log('Raw data length:', data.length)
+        console.log('First item (if exists):', data[0])
+        
         // Process data to handle images as string or array
         const processedData = data.map(item => {
           let images = []
@@ -132,7 +142,7 @@ export default function PortfolioPage() {
         })
         
         console.log('Processed portfolio data:', processedData)
-        console.log('Total items:', processedData.length)
+        console.log('Total items after processing:', processedData.length)
         setItems(processedData)
       } else {
         console.log('No data returned from Supabase')
