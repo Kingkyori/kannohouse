@@ -55,56 +55,161 @@ export default function CommentsPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [modalImageList, setModalImageList] = useState([]);
   const [modalCurrentIndex, setModalCurrentIndex] = useState(0);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
 
   useEffect(() => {
+    // Debug environment variables untuk comments
+    console.log('=== COMMENTS DEBUG ===')
+    console.log('NODE_ENV:', process.env.NODE_ENV)
+    console.log('Supabase URL:', process.env.NEXT_PUBLIC_SUPABASE_URL)
+    console.log('Supabase Key exists:', !!process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY)
+    console.log('========================')
+    
     const fetchTestimonials = async () => {
-      const { data, error } = await supabase
-        .from("comments")
-        .select("*")
-        .order("created_at", { ascending: false });
-      if (!error) setTestimonials(data);
+      try {
+        console.log('Fetching testimonials...')
+        const { data, error } = await supabase
+          .from("comments")
+          .select("*")
+          .order("created_at", { ascending: false });
+        
+        console.log('Testimonials response:', { data, error })
+        
+        if (error) {
+          console.error('Error fetching testimonials:', error)
+        } else {
+          console.log('Testimonials fetched successfully:', data?.length, 'items')
+          setTestimonials(data || [])
+        }
+      } catch (error) {
+        console.error('Fetch testimonials error:', error)
+        setTestimonials([])
+      }
     };
+    
     fetchTestimonials();
   }, []);
 
-  const uploadImageToSupabase = async (file) => {
-    const fileName = `${Date.now()}.webp`;
-    const webpBlob = await resizeImageToWebP(file, 1000, 1000);
+  // Handle click outside dropdown to close it
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownOpen && !event.target.closest('.dropdown-container')) {
+        setDropdownOpen(false);
+      }
+    };
 
-    const { error: uploadError } = await supabase
-      .storage
-      .from("comments-images")
-      .upload(fileName, webpBlob);
-    if (uploadError) {
-      console.error("Upload error:", uploadError.message);
-      return null;
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [dropdownOpen]);
+
+  const uploadImageToSupabase = async (file) => {
+    try {
+      console.log('Starting image upload...', file.name)
+      
+      const fileName = `${Date.now()}.webp`;
+      const webpBlob = await resizeImageToWebP(file, 1000, 1000);
+      
+      console.log('WebP conversion completed, uploading to storage...')
+
+      const { data: uploadData, error: uploadError } = await supabase.storage
+        .from("images") // Gunakan bucket 'images' yang sama seperti portfolio
+        .upload(`comments/${fileName}`, webpBlob);
+      
+      console.log('Upload result:', { uploadData, uploadError })
+
+      if (uploadError) {
+        console.error("Upload error:", uploadError);
+        throw uploadError;
+      }
+
+      const { data: urlData } = supabase.storage
+        .from("images")
+        .getPublicUrl(`comments/${fileName}`);
+      
+      console.log('Generated public URL:', urlData.publicUrl)
+      
+      return urlData.publicUrl;
+    } catch (error) {
+      console.error('Image upload failed:', error)
+      throw error;
     }
-    const { data: publicUrl } = supabase
-      .storage
-      .from("comments-images")
-      .getPublicUrl(fileName);
-    return publicUrl?.publicUrl;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // Validasi dropdown jenis order
+    if (!jenis_order) {
+      alert('Silahkan pilih jenis order terlebih dahulu');
+      return;
+    }
+    
     setIsSubmitting(true);
-    const imageUrl = file ? await uploadImageToSupabase(file) : "";
-    const { error } = await supabase.from("comments").insert([
-      { name, comment, jenis_order, image_url: imageUrl },
-    ]);
-    if (!error) {
+    
+    try {
+      console.log('Starting form submission...')
+      console.log('Form data:', { name, jenis_order, comment, hasFile: !!file })
+      
+      let imageUrl = "";
+      
+      if (file) {
+        console.log('Uploading image...')
+        imageUrl = await uploadImageToSupabase(file);
+        console.log('Image uploaded successfully:', imageUrl)
+      }
+      
+      console.log('Inserting to database...')
+      const { data, error } = await supabase
+        .from("comments")
+        .insert([{
+          name: name.trim(),
+          comment: comment.trim(),
+          jenis_order: jenis_order.trim(),
+          image_url: imageUrl
+        }]);
+      
+      console.log('Database insert result:', { data, error })
+      
+      if (error) {
+        console.error('Database insert error:', {
+          message: error.message,
+          details: error.details,
+          hint: error.hint,
+          code: error.code
+        })
+        throw error;
+      }
+      
       alert("Testimoni berhasil dikirim!");
+      
+      // Reset form
       setName("");
       setJenisOrder("");
       setComment("");
       setFile(null);
+      setDropdownOpen(false);
       setShowModal(false);
-      window.location.reload();
-    } else {
-      alert("Gagal mengirim testimoni");
+      
+      // Refresh testimonials
+      console.log('Refreshing testimonials...')
+      const { data: refreshData, error: refreshError } = await supabase
+        .from("comments")
+        .select("*")
+        .order("created_at", { ascending: false });
+      
+      if (!refreshError) {
+        setTestimonials(refreshData || []);
+        console.log('Testimonials refreshed successfully')
+      }
+      
+    } catch (error) {
+      console.error('Submit error:', error);
+      alert(`Gagal mengirim testimoni: ${error.message}`);
+    } finally {
+      setIsSubmitting(false);
     }
-    setIsSubmitting(false);
   };
 
   return (
@@ -176,13 +281,49 @@ export default function CommentsPage() {
                   onChange={(e) => setName(e.target.value)}
                   required
                 />
-                <input
-                  type="text"
-                  placeholder="Jenis Order (fanart/design)"
-                  value={jenis_order}
-                  onChange={(e) => setJenisOrder(e.target.value)}
-                  required
-                />
+                <div className="dropdown-container">
+                  <div 
+                    className={`dropdown-header ${dropdownOpen ? 'open' : ''}`}
+                    onClick={() => setDropdownOpen(!dropdownOpen)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        setDropdownOpen(!dropdownOpen);
+                      }
+                    }}
+                    tabIndex={0}
+                    role="button"
+                    aria-expanded={dropdownOpen}
+                    aria-haspopup="listbox"
+                  >
+                    <span className={jenis_order ? 'selected' : 'placeholder'}>
+                      {jenis_order || 'Pilih Jenis Order'}
+                    </span>
+                    <span className="dropdown-arrow">▼</span>
+                  </div>
+                  {dropdownOpen && (
+                    <div className="dropdown-options">
+                      <div 
+                        className="dropdown-option"
+                        onClick={() => {
+                          setJenisOrder('Design');
+                          setDropdownOpen(false);
+                        }}
+                      >
+                        Design
+                      </div>
+                      <div 
+                        className="dropdown-option"
+                        onClick={() => {
+                          setJenisOrder('Fanart');
+                          setDropdownOpen(false);
+                        }}
+                      >
+                        Fanart
+                      </div>
+                    </div>
+                  )}
+                </div>
                 <textarea
                   placeholder="Komentar"
                   value={comment}
