@@ -43,9 +43,26 @@ export default function PortfolioPage() {
     testPublicUrl()
   }, [])
 
-  // Function untuk test public URL generation
   const testPublicUrl = async () => {
     try {
+      console.log('=== TESTING SUPABASE CONNECTION ===')
+      
+      // Test basic connection
+      const { data: testData, error: testError } = await supabase
+        .from('portfolio')
+        .select('id, title')
+        .limit(1)
+      
+      console.log('Connection test result:', { testData, testError })
+      
+      if (testError) {
+        console.error('❌ Connection failed:', testError)
+        alert(`Connection Error: ${testError.message}`)
+      } else {
+        console.log('✅ Connection successful!')
+        console.log('Sample data:', testData)
+      }
+      
       // Test dengan file yang sudah ada
       const { data } = supabase.storage
         .from('images')
@@ -60,8 +77,10 @@ export default function PortfolioPage() {
         console.log('❌ URL generation issue detected')
       }
     } catch (error) {
-      console.error('URL test error:', error)
+      console.error('❌ Test failed:', error)
+      alert(`Test Error: ${error.message}`)
     }
+    console.log('================================')
   }
 
   const fetchPortfolio = async () => {
