@@ -23,7 +23,7 @@ export default function PortfolioPage() {
   const [compressionInfo, setCompressionInfo] = useState(null)
 
   useEffect(() => {
-    // Debug environment variables
+    // Debug environment variables (hanya log, tanpa alert)
     console.log('=== ENVIRONMENT DEBUG ===')
     console.log('NODE_ENV:', process.env.NODE_ENV)
     console.log('Supabase URL:', process.env.NEXT_PUBLIC_SUPABASE_URL)
@@ -31,11 +31,6 @@ export default function PortfolioPage() {
     console.log('Full Supabase Key (first 20 chars):', process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY?.substring(0, 20) + '...')
     console.log('Supabase client:', supabase)
     console.log('========================')
-    
-    // Tampilkan alert untuk debugging production
-    if (process.env.NODE_ENV === 'production') {
-      alert(`ENV CHECK:\nURL: ${process.env.NEXT_PUBLIC_SUPABASE_URL}\nKey exists: ${!!process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY}`)
-    }
     
     fetchPortfolio()
     
@@ -57,7 +52,6 @@ export default function PortfolioPage() {
       
       if (testError) {
         console.error('❌ Connection failed:', testError)
-        alert(`Connection Error: ${testError.message}`)
       } else {
         console.log('✅ Connection successful!')
         console.log('Sample data:', testData)
@@ -78,7 +72,6 @@ export default function PortfolioPage() {
       }
     } catch (error) {
       console.error('❌ Test failed:', error)
-      alert(`Test Error: ${error.message}`)
     }
     console.log('================================')
   }
