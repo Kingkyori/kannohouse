@@ -28,8 +28,14 @@ export default function PortfolioPage() {
     console.log('NODE_ENV:', process.env.NODE_ENV)
     console.log('Supabase URL:', process.env.NEXT_PUBLIC_SUPABASE_URL)
     console.log('Supabase Key exists:', !!process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY)
+    console.log('Full Supabase Key (first 20 chars):', process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY?.substring(0, 20) + '...')
     console.log('Supabase client:', supabase)
     console.log('========================')
+    
+    // Tampilkan alert untuk debugging production
+    if (process.env.NODE_ENV === 'production') {
+      alert(`ENV CHECK:\nURL: ${process.env.NEXT_PUBLIC_SUPABASE_URL}\nKey exists: ${!!process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY}`)
+    }
     
     fetchPortfolio()
     
